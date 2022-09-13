@@ -29,6 +29,7 @@ const HomeScreen = () => {
       <View style={styles.bottom}>
         <Pressable
           style={styles.button}
+          onPress={() => console.log('Start Shopping!')}>
           onPress={() => navigation.navigate('Start Shopping!')}>
           <Text style={styles.buttonText}>Start Shopping!</Text>
         </Pressable>
@@ -36,5 +37,4 @@ const HomeScreen = () => {
     </View>
   );
 };
-
 export default HomeScreen;
