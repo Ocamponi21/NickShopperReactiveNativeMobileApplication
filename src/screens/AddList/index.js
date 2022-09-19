@@ -3,9 +3,7 @@ import { View, Text, TextInput, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
-const database = required('../../components/handlers/database.js')
-
-
+const database = require('../../components/Handlers/database.js');
 const AddList = props => {
 
         const navigation = useNavigation();
@@ -26,12 +24,12 @@ const AddList = props => {
                 if(!date ) {
                         alert('Please enter a date in format YYYT-MM-DD!');
                         return;
-                }
+                } 
 
                 try {
-                        database.addlist(name, store, date);
-                }catch (error){
-                        console.log('Error adding list ' + error);
+                        database.addList(name, store, date)
+                } catch (error) {
+                        console.log('Error adding list  ' + error);
                 }
         
                 

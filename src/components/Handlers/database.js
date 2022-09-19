@@ -1,15 +1,15 @@
 // import openDatabase hook
-import {openDatabase} from "react-native-sqlite-storage";
+import { openDatabase} from "react-native-sqlite-storage"
 
 //use the hook to create database
 const shopperDB = openDatabase({name: 'Shopper.db'});
 const listsTableName = 'lists';
 
 module.exports = {
-        //declare the function that create the lists table
-        createListsTable: async function() {
+        //Declare the function that create the lists table
+        createListsTable: async function () {
                 //Declare a transaction that will execute a SQL statement
-                (await shopperDB.transaction )(txn => {
+                (await shopperDB).transaction(txn => {
                         //Execute the SQL
                         txn.executeSql(
                                 `CREATE TABLE IF NOT EXISTS ${listsTableName}(
@@ -22,8 +22,7 @@ module.exports = {
                                 [],
                                 //CALL BACK FUNCTION TO HANDLE  results of SQL query
                                 () => {
-                                        console.log(' table created successfully');
-
+                                        console.log(' Lists table created successfully');
                                 },
                                 error => {
                                         console.log ('Error creating lists table ' + error.message);
@@ -44,7 +43,7 @@ module.exports = {
                                 [],
                                 // callback function to handle results of SQL query
                                 () => {
-                                        console.log(name + " added successfully")
+                                        console.log(name + ' added successfully');
                                 },
                                 error => {
                                 console.log('Error  adding list ' + error.message);
