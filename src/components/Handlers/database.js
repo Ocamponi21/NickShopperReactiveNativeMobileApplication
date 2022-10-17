@@ -4,6 +4,7 @@ import { openDatabase} from "react-native-sqlite-storage"
 //use the hook to create database
 const shopperDB = openDatabase({name: 'Shopper.db'});
 const listsTableName = 'lists';
+const itemsTableName = 'items';
 
 module.exports = {
         //Declare the function that create the lists table
@@ -47,6 +48,53 @@ module.exports = {
                                 },
                                 error => {
                                 console.log('Error  adding list ' + error.message);
+                                },
+                        );
+                });
+        },
+
+
+        //Declare the function that create the items table
+        createItemsTable: async function () {
+                //Declare a transaction that will execute a Sql statement
+                (await shopperDB).transaction(txn => {
+                        //Execute the Sql
+                        txn.executeSql(
+                                `CREATE TABLE IF NOT EXISTS ${itemsTableName}(
+                                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                        name TEXT(100),
+                                        price REAL,
+                                        quantity INTEGER
+                                );`,
+                                //arguments while using an SQL prepared statemtn
+                                [],
+                                //call back function to handle results of SQL query
+                                () => {
+                                        console.log(' Items table created successfully');
+                                },
+                                error => {
+                                        console.log ('Error creating items table ' + error.message);
+                                },
+
+                        );
+                });
+        },
+
+        //Declare a function that will insert a row of data into the items table
+        addItem: async function (name, price, quantity) {
+                //Declare a transaction that will execute an Sql statement
+                (await shopperDB).transaction(txn => {
+                        //execute the Sql
+                        txn.executeSql(
+                                `INSERT INTO ${itemsTableName} (name, price, quantity) VALUES ("${name}", ${price}, ${quantity})`,
+                                //Arguments passed when using Sql prepared statement
+                                [],
+                                //Callback function to handle results of Sql query
+                                () => {
+                                        console.log(name + ' added successfully');
+                                },
+                                error => {
+                                console.log('Error adding item ' + error.message);
                                 },
                         );
                 });

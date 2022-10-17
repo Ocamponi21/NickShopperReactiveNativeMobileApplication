@@ -19,7 +19,15 @@
    } catch (error) {
      console.log('Failed to create lists table ' + error);
    }
+
+   try {
+    db.createItemsTable();
+  } catch (error) {
+    console.log('Failed to create items table ' + error);
+  }
    return <Router />;
  };
+
+
  
  export default App;
