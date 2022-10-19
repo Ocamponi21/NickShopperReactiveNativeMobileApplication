@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
 const database = require('../../components/Handlers/database.js');
-const AddItem = props => {
+const AddItemScreen = props => {
 
         const navigation = useNavigation();
         //name of shopping,store, date
@@ -27,13 +27,13 @@ const AddItem = props => {
                 }
 
                 try {
-                        database.addList(name, store, date)
+                        database.addItem(name, price, quantity)
                 } catch (error) {
                         console.log('Error adding item  ' + error);
                 }
 
 
-                alert('Item Added ');//alert list
+                alert('Item Added');//alert list
                 navigation.navigate('Start Shopping!');
         }
 
@@ -67,7 +67,7 @@ const AddItem = props => {
 
                         </View>
                         <View style={styles.bottomContainer}>
-                                <Pressable style={styles.button} onPress={onAdd}>
+                                <Pressable style={styles.button} onPress={onItemAdd}>
                                         <Text style={styles.buttonText}> Add</Text>
                                 </Pressable>
 
@@ -76,4 +76,4 @@ const AddItem = props => {
         );
 };
 
-export default AddItem;
+export default AddItemScreen;
