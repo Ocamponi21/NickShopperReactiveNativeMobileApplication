@@ -53,7 +53,7 @@ const ItemsScreen = props => {
             } else {
               //if no rows of data were returned,
               // set item state variable to an empty array
-              setitems([]);
+              setItems([]);
             }
           },
           error => {
@@ -67,6 +67,13 @@ const ItemsScreen = props => {
 
   return (
     <View style={styles.container}>
+      <View>
+        <FlatList
+          data={items}
+          renderItem={({ item }) => <Item post={item} />}
+          keyExtractor={item => item.id}
+        />
+      </View>
       <View style={styles.bottom}>
         <TouchableOpacity
           style={styles.button}
