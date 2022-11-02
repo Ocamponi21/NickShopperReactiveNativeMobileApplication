@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, FlatList } from 'react-native';
-import Item from '../../components/List';
+import Item from '../../components/Item';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 // import openDatabase hook
@@ -44,8 +44,8 @@ const ItemsScreen = props => {
                 results.push({
                   id: item.id,
                   name: item.name,
-                  store: item.price,
-                  date: item.quantity,
+                  price: item.price,
+                  quantity: item.quantity,
                 });
               }
               // assign results array to item state variable 

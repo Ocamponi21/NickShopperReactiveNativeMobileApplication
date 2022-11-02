@@ -3,14 +3,28 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import styles from './styles';
 
+const database = require('../../components/Handlers/database.js');
+
 const item = props => {
 
     const post = props.post;
     const navigation = useNavigation();
 
     const onPress = () => {
-        navigation.navigate('Existing Item', {post: post});
+        if (post.list_id){
+            //Add list item screen is using me 
+        try{
+            database.addListItem(post.list_id, post.id);
+        }catch (error) {
+            console.log('Error adding list item ' + error);
+        }
+        alert('Item added to list!');
+        navigation.navigate('Start Shopping!');
+    }else {
+        //item screen is using me 
+        console.log(post.name);
     }
+}
 
   return (
     <View style={styles.container}>
