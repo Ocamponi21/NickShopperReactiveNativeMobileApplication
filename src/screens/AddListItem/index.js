@@ -53,10 +53,24 @@ const AddListItemScreen = props => {
               /* [
                 {
                   id: 1 
-                  name:
-                  price:
-                  quantity:
-                  list_id:
+                  name:  bannana
+                  price:1
+                  quantity:1
+                  list_id:2
+                }
+                 {
+                  id: 2
+                  name:apple
+                  price:4
+                  quantity: 5
+                  list_id:2
+                }
+                 {
+                  id: 3
+                  name: jelly
+                  price: 4.34
+                  quantity: 3
+                  list_id:2
                 }
               ]
               */

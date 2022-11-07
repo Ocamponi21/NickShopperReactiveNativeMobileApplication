@@ -109,7 +109,7 @@ module.exports = {
                         txn.executeSql(
                                 `CREATE TABLE IF NOT EXISTS ${listItemsTableName}(
                                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                        list_id INTERGER
+                                        list_id INTERGER,
                                         item_id INTEGER
                                 );`,
                                 //arguments while using an SQL prepared statemtn
