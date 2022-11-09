@@ -46,7 +46,6 @@ const ViewListItemsScreen = props => {
                   name: item.name,
                   price: item.price,
                   quantity: item.quantity,
-                  list_id: post.id,
                 });
               }
               // assign results array to item state variable 
