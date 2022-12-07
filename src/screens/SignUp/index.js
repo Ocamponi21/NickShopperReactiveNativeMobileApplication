@@ -33,21 +33,17 @@ const HomeScreen = () => {
         [],
         (_, res) => {
           let user = res.rows.length;
-          if (user == 0) {
-            Alert.alert('Invalid User', 'Username and Password are invalid!');
+          if (user >= 1) {
+            Alert.alert('Invalid User', 'Username already exsists!');
             return;
           } else {
             //console.log('Testing');
-            let item = res.row.item(0);
-            let isPasswordCorrect = bcrypt.compareSync(password, item.password);
-            if (!isPasswordCorrect) {
-              Alert.alert('Invalid User', 'Username and password are invalid!');
-              return;
-            }
-
-            if (user != 0 && isPasswordCorrect) {
-              navigation.navigate('Start Shopping!');
-            }
+            console.log(username);
+            let salt = bcrypt.genSaltSync(10);
+            let hash = bcrypt.hashSync(password, salt);
+            
+            database.addUser(username,hash);
+            navigation.navigate('Home');
           }
         },
         error => {
@@ -120,27 +116,7 @@ const HomeScreen = () => {
         accessibilityHint='Goes to list screen'
         style={styles.button}
         onPress={() => onSubmit()}>
-        <Text style={styles.buttonText}>Sign In</Text>
-      </Pressable>
-      <Pressable
-        onPress={() => navigation.navigate('Sign Up')}
-        style={{
-          height: 50,
-          borderRadius: 30,
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: 15,
-          backgroundColor: 'black',
-          marginHorizontal: 10,
-        }}
-      >
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 16,
-            fontWeight: 'bold',
-          }}
-        >New here?Sign Up </Text>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </Pressable>
     </View>
   );
